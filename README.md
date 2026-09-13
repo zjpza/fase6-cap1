@@ -36,6 +36,26 @@ O detalhamento técnico completo (código, passo a passo, gráficos, achados e c
 
 ---
 
+## 🗺️ Roadmap de execução
+
+Ordem de execução das [issues](../../issues), com dependências (as prioridades também estão como labels: `P1` → `P5`):
+
+| Ordem | Issue                                                                        | Depende de      | Paralelizável?                             |
+| ----- | ---------------------------------------------------------------------------- | --------------- | ------------------------------------------ |
+| 1º    | [#1 Dataset — objetos A e B](../../issues/1)                                 | —               | Primeiro passo, desbloqueia tudo           |
+| 2º    | [#2 Rotulação no Make Sense IA](../../issues/2)                               | #1              | Junto com #6 e #7                           |
+| 3º    | [#3 Colab YOLOv5 — treino/val/teste](../../issues/3)                          | #2              | Caminho principal da Entrega 1             |
+| 4º    | [#4 Simulações 30 vs 60 épocas](../../issues/4)                              | #3              | Caminho principal da Entrega 1             |
+| 5º    | [#5 Resultados — prints e conclusões](../../issues/5)                        | #4              | Caminho principal da Entrega 1             |
+| 6º    | [#6 YOLO tradicional](../../issues/6)                                        | #1              | Pode rodar paralelo a #2–#5                |
+| 7º    | [#7 CNN treinada do zero](../../issues/7)                                     | #1              | Pode rodar paralelo a #2–#6                |
+| 8º    | [#8 Comparação crítica das 3 abordagens](../../issues/8)                      | #3–#7           | Consolida a Entrega 2                       |
+| 9º    | [#9 README, notebook e vídeo final](../../issues/9)                          | #1–#8           | Última antes do freeze da entrega          |
+| Opc.  | [#10 Ir Além — ESP32-CAM](../../issues/10)                                    | #3 (`best.pt`)  | Paralelo, após entregas obrigatórias       |
+| Opc.  | [#11 Ir Além — Transfer Learning](../../issues/11)                            | #7              | Paralelo, após entregas obrigatórias       |
+
+---
+
 ## 🎯 Entrega 1 — Detecção de objetos com YOLOv5
 
 > ⚠️ Documentação em construção — acompanhe o progresso pelas [issues](../../issues).
