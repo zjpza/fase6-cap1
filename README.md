@@ -30,7 +30,7 @@ Este repositório contempla as **duas entregas obrigatórias** da Fase 6:
 | Entrega       | Tema                                                                                        | Onde está                                                                               |
 | ------------- | ------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | **Entrega 1** | Visão Computacional — dataset customizado, rotulação, treinamento/validação/teste com YOLOv5 | seções 2 a 7 do [notebook](notebooks/JoaoPedroZavanelaAndreu_rm570231_pbl_fase6.ipynb)  |
-| **Entrega 2** | Comparação de abordagens — YOLO customizada vs. YOLO tradicional vs. CNN treinada do zero     | seção 7 do mesmo notebook (itens abertos: issues [#7](../../issues/7) e [#8](../../issues/8)) |
+| **Entrega 2** | Comparação de abordagens — YOLO customizada vs. YOLO tradicional vs. CNN treinada do zero     | seções 7, 9 e 10 do mesmo notebook (issues [#7](issues/7) e [#8](issues/8)) |
 
 O detalhamento técnico completo — código executado, saídas, gráficos, achados, limitações e conclusões — está no **notebook**. Este README é a porta de entrada.
 
@@ -83,21 +83,21 @@ Critérios do enunciado: **facilidade de uso/integração, precisão do modelo, 
 
 ## 🗺️ Roadmap de execução
 
-Ordem de execução das [issues](../../issues), com dependências (as prioridades também estão como labels: `P1` → `P5`):
+Ordem de execução das [issues](issues), com dependências (as prioridades também estão como labels: `P1` → `P5`):
 
 | Ordem | Issue                                                          | Depende de     | Status                                    |
 | ----- | -------------------------------------------------------------- | -------------- | ----------------------------------------- |
-| 1º    | [#1 Dataset — objetos A e B](../../issues/1)                    | —              | ✅ concluída                               |
-| 2º    | [#2 Rotulação no Make Sense IA](../../issues/2)                 | #1             | ✅ concluída                               |
-| 3º    | [#3 Colab YOLOv5 — treino/val/teste](../../issues/3)            | #2             | ✅ executada (notebook acima)              |
-| 4º    | [#4 Simulações 30 vs 60 épocas](../../issues/4)                 | #3             | ✅ executada (seção 8)                     |
-| 5º    | [#5 Resultados — prints e conclusões](../../issues/5)           | #4             | ✅ seção 7 do notebook                     |
-| 6º    | [#6 YOLO tradicional](../../issues/6)                           | #1             | ✅ baseline, contagens e tempos (seções 7 e 10) |
-| 7º    | [#7 CNN treinada do zero](../../issues/7)                       | #1             | ✅ executada (seção 9)                     |
-| 8º    | [#8 Comparação crítica das 3 abordagens](../../issues/8)        | #3–#7          | ✅ seção 10                                |
-| 9º    | [#9 README, notebook e vídeo final](../../issues/9)             | #1–#8          | 🔸 README e notebook prontos; falta o vídeo |
-| Opc.  | [#10 Ir Além — ESP32-CAM](../../issues/10)                      | #3 (`best.pt`) | ➖ não iniciada                            |
-| Opc.  | [#11 Ir Além — Transfer Learning](../../issues/11)              | #7             | ➖ não iniciada                            |
+| 1º    | [#1 Dataset — objetos A e B](issues/1)                    | —              | ✅ concluída                               |
+| 2º    | [#2 Rotulação no Make Sense IA](issues/2)                 | #1             | ✅ concluída                               |
+| 3º    | [#3 Colab YOLOv5 — treino/val/teste](issues/3)            | #2             | ✅ executada (notebook acima)              |
+| 4º    | [#4 Simulações 30 vs 60 épocas](issues/4)                 | #3             | ✅ executada (seção 8)                     |
+| 5º    | [#5 Resultados — prints e conclusões](issues/5)           | #4             | ✅ seção 7 do notebook                     |
+| 6º    | [#6 YOLO tradicional](issues/6)                           | #1             | ✅ baseline, contagens e tempos (seções 7 e 10) |
+| 7º    | [#7 CNN treinada do zero](issues/7)                       | #1             | ✅ executada (seção 9)                     |
+| 8º    | [#8 Comparação crítica das 3 abordagens](issues/8)        | #3–#7          | ✅ seção 10                                |
+| 9º    | [#9 README, notebook e vídeo final](issues/9)             | #1–#8          | 🔸 documentação pronta; falta publicar o vídeo |
+| Opc.  | [#10 Ir Além — ESP32-CAM](issues/10)                      | #3 (`best.pt`) | ➖ não iniciada                            |
+| Opc.  | [#11 Ir Além — Transfer Learning](issues/11)              | #7             | ✅ executada no notebook opcional          |
 
 ---
 
@@ -110,7 +110,7 @@ Ordem de execução das [issues](../../issues), com dependências (as prioridade
 - **Como as máscaras são geradas:** segmentação automática com um YOLO pré-treinado no COCO (`cow` = 19 e `truck` = 7), sem nenhum treino nosso; a imagem recortada mantém só o objeto, com fundo preto.
 - **Evidências no notebook:** figura original/máscara/recortada, curvas de treino, matrizes de confusão, tabela comparativa dos 4 treinos e a figura de arquitetura da solução.
 - **Resultados:** a MobileNetV2 pré-treinada acertou **8/8 no teste** nas duas versões da base, contra **7/8** da CNN do zero — com **2,3 M de parâmetros contra 11,2 M**. Recortar o fundo não mudou a acurácia nesta base, mas cortou o tempo de treino da CNN do zero pela metade (1,06 → 0,56 min). A segmentação automática achou máscara em **todas as 80 imagens** (cobertura média de 24,7%).
-- 🎥 **Vídeo demonstrativo:** 🔗 **A definir** (YouTube, não listado, até 5 minutos).
+- 🎥 **Vídeo demonstrativo:** pendente de gravação e publicação no YouTube como **não listado**. O roteiro de gravação está em [`docs/VIDEO_ROTEIRO.md`](docs/VIDEO_ROTEIRO.md).
 
 A **Opção 1** (ESP32-CAM/webcam com detecção em tempo real) ficou de fora nesta fase.
 
@@ -133,4 +133,4 @@ O dataset não é versionado (`dataset/` está no `.gitignore`): as 80 imagens e
 
 ## 🎥 Vídeo demonstrativo
 
-🔗 **A definir** — vídeo de até 5 minutos, no YouTube, como "não listado". Substituir este parágrafo pelo link antes da entrega.
+O único item de implementação ainda pendente é gravar e publicar o vídeo de até 5 minutos. Para não registrar um link fictício, o README será atualizado com a URL do YouTube após o upload. Use o roteiro em [`docs/VIDEO_ROTEIRO.md`](docs/VIDEO_ROTEIRO.md), publique como **não listado** e substitua este bloco pelo link final.
