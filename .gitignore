@@ -37,5 +37,5 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-resume.txt
-data/roteiros_videos.md
+# Dataset local (as imagens vêm do Drive público; evita subir ~21 MB de imagens de terceiros para o repo)
+dataset/
