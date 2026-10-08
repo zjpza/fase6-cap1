@@ -27,12 +27,57 @@ A FarmTech Solutions expandiu sua carteira de serviços de IA para além do agro
 
 Este repositório contempla as **duas entregas obrigatórias** da Fase 6:
 
-| Entrega       | Tema                                                                                                                       | Onde está                  |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
-| **Entrega 1** | Visão Computacional — dataset customizado, rotulação, treinamento/validação/teste com YOLOv5 e comparação de épocas        | [`notebooks/`](notebooks/)  |
-| **Entrega 2** | Comparação de abordagens — YOLO customizada vs. YOLO tradicional vs. CNN treinada do zero                                   | [`notebooks/`](notebooks/) |
+| Entrega       | Tema                                                                                        | Onde está                                                                               |
+| ------------- | ------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| **Entrega 1** | Visão Computacional — dataset customizado, rotulação, treinamento/validação/teste com YOLOv5 | seções 2 a 7 do [notebook](notebooks/JoaoPedroZavanelaAndreu_rm570231_pbl_fase6.ipynb)  |
+| **Entrega 2** | Comparação de abordagens — YOLO customizada vs. YOLO tradicional vs. CNN treinada do zero     | seção 7 do mesmo notebook (itens abertos: issues [#7](../../issues/7) e [#8](../../issues/8)) |
 
-O detalhamento técnico completo (código, passo a passo, gráficos, achados e conclusões) está no **Jupyter Notebook**. Este README é apenas uma introdução que conduz o leitor até ele.
+O detalhamento técnico completo — código executado, saídas, gráficos, achados, limitações e conclusões — está no **notebook**. Este README é a porta de entrada.
+
+---
+
+## 📒 Notebook e como executar
+
+- **Arquivo:** [`notebooks/JoaoPedroZavanelaAndreu_rm570231_pbl_fase6.ipynb`](notebooks/JoaoPedroZavanelaAndreu_rm570231_pbl_fase6.ipynb)
+- **Abrir no Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/zjpza/fase6-cap1/blob/main/notebooks/JoaoPedroZavanelaAndreu_rm570231_pbl_fase6.ipynb)
+
+Passo a passo para reproduzir:
+
+1. Abra o notebook no Colab pelo badge acima (o repositório é público).
+2. _Ambiente de execução → Alterar tipo de ambiente_ → **T4 GPU**.
+3. _Ambiente de execução → Reiniciar e executar tudo_. O notebook clona o YOLOv5, obtém o dataset e roda treino, validação, teste e inferência de ponta a ponta — cerca de 6 minutos na T4.
+4. Na primeira execução o Colab pede autorização de leitura do Drive. O dataset está numa **pasta pública** do Drive do grupo (164 arquivos, entre imagens, rotulações e metadados); o `gdown` não dá conta porque o Google limita a 50 arquivos por pasta, então o notebook baixa pela API do Drive.
+
+Sem GPU o treino de 100 épocas não é viável.
+
+---
+
+## 🎯 Entrega 1 — Detecção de objetos com YOLOv5
+
+| Meta do enunciado                                                                       | Status                                                                                                          |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| 40 imagens do objeto A + 40 do objeto B (80 no total)                                   | ✅ `vaca` (A) e `caminhao` (B), 40 de cada                                                                       |
+| 32 treino / 4 validação / 4 teste **por classe**                                        | ✅ 64 / 8 / 8 no total                                                                                           |
+| Imagens organizadas no Google Drive, separadas em treino/validação/teste                | ✅ pasta pública do grupo                                                                                        |
+| Rotulação das imagens (Make Sense IA) salva no Drive                                    | ✅ formato YOLO `.txt`; a procedência de cada imagem está em `origem_vaca.csv` / `origem_caminhao.csv`           |
+| Colab conectado ao Drive com **treino, validação e teste** e passo a passo em markdown  | ✅ seções 2 a 6 do notebook                                                                                      |
+| Prints das imagens de teste processadas + conclusões sobre validação e testes           | ✅ seção 7 (métricas por classe, gráficos, matriz de confusão e prints das detecções)                            |
+| **Duas simulações** de treino com nº de épocas bem diferentes (ex.: 30 e 60)            | ⏳ [issue #4](../../issues/4)                                                                                    |
+
+Números desta execução (T4, 100 épocas): no **teste**, mAP@0.5 **0,866** e recall **0,909**; no dataset, **129 caixas de vaca e 44 de caminhão** em 80 imagens.
+
+---
+
+## 🎯 Entrega 2 — Comparação de abordagens
+
+Critérios do enunciado: **facilidade de uso/integração, precisão do modelo, tempo de treinamento/customização e tempo de inferência**.
+
+| Abordagem                                     | Status                                                                                        |
+| --------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| **YOLO customizada** (Entrega 1)              | ✅ treinada e avaliada (seção 7)                                                               |
+| **YOLO tradicional** (COCO, sem treinar)      | ✅ baseline rodado nas mesmas imagens de teste, com comparação qualitativa na seção 7          |
+| **CNN treinada do zero** (classificação A/B)  | ⏳ [issue #7](../../issues/7)                                                                  |
+| Tabela consolidada dos 4 critérios            | ⏳ [issue #8](../../issues/8)                                                                  |
 
 ---
 
@@ -40,55 +85,23 @@ O detalhamento técnico completo (código, passo a passo, gráficos, achados e c
 
 Ordem de execução das [issues](../../issues), com dependências (as prioridades também estão como labels: `P1` → `P5`):
 
-| Ordem | Issue                                                                        | Depende de      | Paralelizável?                             |
-| ----- | ---------------------------------------------------------------------------- | --------------- | ------------------------------------------ |
-| 1º    | [#1 Dataset — objetos A e B](../../issues/1)                                 | —               | Primeiro passo, desbloqueia tudo           |
-| 2º    | [#2 Rotulação no Make Sense IA](../../issues/2)                               | #1              | Junto com #6 e #7                           |
-| 3º    | [#3 Colab YOLOv5 — treino/val/teste](../../issues/3)                          | #2              | Caminho principal da Entrega 1             |
-| 4º    | [#4 Simulações 30 vs 60 épocas](../../issues/4)                              | #3              | Caminho principal da Entrega 1             |
-| 5º    | [#5 Resultados — prints e conclusões](../../issues/5)                        | #4              | Caminho principal da Entrega 1             |
-| 6º    | [#6 YOLO tradicional](../../issues/6)                                        | #1              | Pode rodar paralelo a #2–#5                |
-| 7º    | [#7 CNN treinada do zero](../../issues/7)                                     | #1              | Pode rodar paralelo a #2–#6                |
-| 8º    | [#8 Comparação crítica das 3 abordagens](../../issues/8)                      | #3–#7           | Consolida a Entrega 2                       |
-| 9º    | [#9 README, notebook e vídeo final](../../issues/9)                          | #1–#8           | Última antes do freeze da entrega          |
-| Opc.  | [#10 Ir Além — ESP32-CAM](../../issues/10)                                    | #3 (`best.pt`)  | Paralelo, após entregas obrigatórias       |
-| Opc.  | [#11 Ir Além — Transfer Learning](../../issues/11)                            | #7              | Paralelo, após entregas obrigatórias       |
+| Ordem | Issue                                                          | Depende de     | Status                                    |
+| ----- | -------------------------------------------------------------- | -------------- | ----------------------------------------- |
+| 1º    | [#1 Dataset — objetos A e B](../../issues/1)                    | —              | ✅ concluída                               |
+| 2º    | [#2 Rotulação no Make Sense IA](../../issues/2)                 | #1             | ✅ concluída                               |
+| 3º    | [#3 Colab YOLOv5 — treino/val/teste](../../issues/3)            | #2             | ✅ executada (notebook acima)              |
+| 4º    | [#4 Simulações 30 vs 60 épocas](../../issues/4)                 | #3             | ⏳ próxima                                 |
+| 5º    | [#5 Resultados — prints e conclusões](../../issues/5)           | #4             | ✅ seção 7 do notebook                     |
+| 6º    | [#6 YOLO tradicional](../../issues/6)                           | #1             | 🔸 baseline e comparação prontos; faltam os tempos medidos e a tabela |
+| 7º    | [#7 CNN treinada do zero](../../issues/7)                       | #1             | ⏳                                         |
+| 8º    | [#8 Comparação crítica das 3 abordagens](../../issues/8)        | #3–#7          | ⏳                                         |
+| 9º    | [#9 README, notebook e vídeo final](../../issues/9)             | #1–#8          | 🔸 README e notebook prontos; falta o vídeo |
+| Opc.  | [#10 Ir Além — ESP32-CAM](../../issues/10)                      | #3 (`best.pt`) | ➖ não iniciada                            |
+| Opc.  | [#11 Ir Além — Transfer Learning](../../issues/11)              | #7             | ➖ não iniciada                            |
 
 ---
 
-## 🎯 Entrega 1 — Detecção de objetos com YOLOv5
-
-> ⚠️ Documentação em construção — acompanhe o progresso pelas [issues](../../issues).
-
-- Dataset próprio com **2 classes** (objeto A e objeto B, bem distintos): 80 imagens no total, divididas em treino (32/classe), validação (4/classe) e teste (4/classe);
-- Rotulação no [Make Sense AI](https://www.makesense.ai/) e organização no Google Drive;
-- Colab conectado ao Drive executando **treino, validação e teste**, com passo a passo em markdown;
-- **Duas simulações de treinamento** com quantidades diferentes de épocas, comparando acurácia, erro e desempenho;
-- Prints das imagens de teste processadas pelo modelo e conclusões sobre os resultados (`yolov5/runs/detect/expX`).
-
-### 📒 Notebook
-
-➡️ `notebooks/JoaoPedroZavanelaAndreu_rm570231_pbl_fase6.ipynb` *(em construção)*
-
-### 🎥 Vídeo demonstrativo
-
-🔗 Link em breve (YouTube — não listado).
-
----
-
-## 🎯 Entrega 2 — Comparação de abordagens
-
-> ⚠️ Documentação em construção — acompanhe o progresso pelas [issues](../../issues).
-
-A partir da mesma base da Entrega 1, comparamos criticamente três abordagens em termos de **facilidade de uso/integração, precisão, tempo de treinamento e tempo de inferência**:
-
-1. **YOLO customizada** (Entrega 1);
-2. **YOLO tradicional** (pré-treinada);
-3. **CNN treinada do zero** para classificação das imagens.
-
----
-
-## 🚀 Ir Além *(opcional — não vale nota)*
+## 🚀 Ir Além _(opcional — não vale nota)_
 
 - **Opção 1 — ESP32-CAM:** coleta de imagens em tempo real via Wi-Fi e detecção com o `best.pt` gerado na Entrega 1;
 - **Opção 2 — Transfer Learning & Fine Tuning:** rede pré-treinada na ImageNet + segmentação com máscara antes da classificação.
@@ -99,9 +112,17 @@ A partir da mesma base da Entrega 1, comparamos criticamente três abordagens em
 
 ```
 fase6-cap1/
-├── notebooks/   # Notebooks Jupyter das entregas
-├── data/        # Bases e artefatos de dados
+├── notebooks/   # Notebook das entregas (executado, com saídas salvas)
+├── data/        # Artefatos de dados
 ├── assets/      # Imagens, gráficos e figuras do README
 ├── docs/        # Documentação complementar
 └── README.md
 ```
+
+O dataset não é versionado (`dataset/` está no `.gitignore`): as 80 imagens e as rotulações ficam na pasta pública do Drive do grupo e são baixadas pelo próprio notebook, o que mantém o repositório leve e sem imagens de terceiros.
+
+---
+
+## 🎥 Vídeo demonstrativo
+
+🔗 **A definir** — vídeo de até 5 minutos, no YouTube, como "não listado". Substituir este parágrafo pelo link antes da entrega.
