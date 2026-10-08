@@ -109,6 +109,7 @@ Ordem de execução das [issues](../../issues), com dependências (as prioridade
 - **O que ele testa:** (1) uma rede grande pré-treinada na ImageNet (*MobileNetV2*, com fine tuning das últimas 30 camadas) contra a CNN treinada do zero da Entrega 2; (2) se **pré-segmentar** o objeto — recortando o fundo com uma máscara — facilita a classificação.
 - **Como as máscaras são geradas:** segmentação automática com um YOLO pré-treinado no COCO (`cow` = 19 e `truck` = 7), sem nenhum treino nosso; a imagem recortada mantém só o objeto, com fundo preto.
 - **Evidências no notebook:** figura original/máscara/recortada, curvas de treino, matrizes de confusão, tabela comparativa dos 4 treinos e a figura de arquitetura da solução.
+- **Resultados:** a MobileNetV2 pré-treinada acertou **8/8 no teste** nas duas versões da base, contra **7/8** da CNN do zero — com **2,3 M de parâmetros contra 11,2 M**. Recortar o fundo não mudou a acurácia nesta base, mas cortou o tempo de treino da CNN do zero pela metade (1,06 → 0,56 min). A segmentação automática achou máscara em **todas as 80 imagens** (cobertura média de 24,7%).
 - 🎥 **Vídeo demonstrativo:** 🔗 **A definir** (YouTube, não listado, até 5 minutos).
 
 A **Opção 1** (ESP32-CAM/webcam com detecção em tempo real) ficou de fora nesta fase.
