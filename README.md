@@ -62,7 +62,7 @@ Sem GPU o treino de 100 épocas não é viável.
 | Rotulação das imagens (Make Sense IA) salva no Drive                                    | ✅ formato YOLO `.txt`; a procedência de cada imagem está em `origem_vaca.csv` / `origem_caminhao.csv`           |
 | Colab conectado ao Drive com **treino, validação e teste** e passo a passo em markdown  | ✅ seções 2 a 6 do notebook                                                                                      |
 | Prints das imagens de teste processadas + conclusões sobre validação e testes           | ✅ seção 7 (métricas por classe, gráficos, matriz de confusão e prints das detecções)                            |
-| **Duas simulações** de treino com nº de épocas bem diferentes (ex.: 30 e 60)            | ✅ seção 8 — 30 e 60 épocas, com tabela comparativa (falta só re-rodar a célula de comparação) |
+| **Duas simulações** de treino com nº de épocas bem diferentes (ex.: 30 e 60)            | ✅ seção 8 — 30 e 60 épocas, com tabela comparativa de métricas, perdas e tempo |
 
 Números desta execução (T4, 100 épocas): no **teste**, mAP@0.5 **0,864** e recall **0,894**; no dataset, **129 caixas de vaca e 44 de caminhão** em 80 imagens. Com 30 épocas o melhor mAP@0.5 na validação foi 0,836, com 60 foi 0,945 e com 100 foi 0,995.
 
