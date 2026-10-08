@@ -103,8 +103,15 @@ Ordem de execução das [issues](../../issues), com dependências (as prioridade
 
 ## 🚀 Ir Além _(opcional — não vale nota)_
 
-- **Opção 1 — ESP32-CAM:** coleta de imagens em tempo real via Wi-Fi e detecção com o `best.pt` gerado na Entrega 1;
-- **Opção 2 — Transfer Learning & Fine Tuning:** rede pré-treinada na ImageNet + segmentação com máscara antes da classificação.
+**Opção 2 — Transfer Learning, Fine Tuning e segmentação** (a opção escolhida pelo grupo):
+
+- **Notebook:** [`notebooks/IrAlem_TransferLearning.ipynb`](notebooks/IrAlem_TransferLearning.ipynb) — [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/zjpza/fase6-cap1/blob/main/notebooks/IrAlem_TransferLearning.ipynb)
+- **O que ele testa:** (1) uma rede grande pré-treinada na ImageNet (*MobileNetV2*, com fine tuning das últimas 30 camadas) contra a CNN treinada do zero da Entrega 2; (2) se **pré-segmentar** o objeto — recortando o fundo com uma máscara — facilita a classificação.
+- **Como as máscaras são geradas:** segmentação automática com um YOLO pré-treinado no COCO (`cow` = 19 e `truck` = 7), sem nenhum treino nosso; a imagem recortada mantém só o objeto, com fundo preto.
+- **Evidências no notebook:** figura original/máscara/recortada, curvas de treino, matrizes de confusão, tabela comparativa dos 4 treinos e a figura de arquitetura da solução.
+- 🎥 **Vídeo demonstrativo:** 🔗 **A definir** (YouTube, não listado, até 5 minutos).
+
+A **Opção 1** (ESP32-CAM/webcam com detecção em tempo real) ficou de fora nesta fase.
 
 ---
 
