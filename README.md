@@ -62,9 +62,9 @@ Sem GPU o treino de 100 épocas não é viável.
 | Rotulação das imagens (Make Sense IA) salva no Drive                                    | ✅ formato YOLO `.txt`; a procedência de cada imagem está em `origem_vaca.csv` / `origem_caminhao.csv`           |
 | Colab conectado ao Drive com **treino, validação e teste** e passo a passo em markdown  | ✅ seções 2 a 6 do notebook                                                                                      |
 | Prints das imagens de teste processadas + conclusões sobre validação e testes           | ✅ seção 7 (métricas por classe, gráficos, matriz de confusão e prints das detecções)                            |
-| **Duas simulações** de treino com nº de épocas bem diferentes (ex.: 30 e 60)            | ⏳ [issue #4](../../issues/4)                                                                                    |
+| **Duas simulações** de treino com nº de épocas bem diferentes (ex.: 30 e 60)            | ✅ seção 8 — 30 e 60 épocas, com tabela comparativa (falta só re-rodar a célula de comparação) |
 
-Números desta execução (T4, 100 épocas): no **teste**, mAP@0.5 **0,866** e recall **0,909**; no dataset, **129 caixas de vaca e 44 de caminhão** em 80 imagens.
+Números desta execução (T4, 100 épocas): no **teste**, mAP@0.5 **0,864** e recall **0,894**; no dataset, **129 caixas de vaca e 44 de caminhão** em 80 imagens. Com 30 épocas o melhor mAP@0.5 na validação foi 0,836, com 60 foi 0,945 e com 100 foi 0,995.
 
 ---
 
@@ -76,8 +76,8 @@ Critérios do enunciado: **facilidade de uso/integração, precisão do modelo, 
 | --------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | **YOLO customizada** (Entrega 1)              | ✅ treinada e avaliada (seção 7)                                                               |
 | **YOLO tradicional** (COCO, sem treinar)      | ✅ baseline rodado nas mesmas imagens de teste, com comparação qualitativa na seção 7          |
-| **CNN treinada do zero** (classificação A/B)  | ⏳ [issue #7](../../issues/7)                                                                  |
-| Tabela consolidada dos 4 critérios            | ⏳ [issue #8](../../issues/8)                                                                  |
+| **CNN treinada do zero** (classificação A/B)  | ✅ seção 9 — acurácia 1,000 no teste (8/8) e 0,875 na validação                |
+| Tabela consolidada dos 4 critérios            | ✅ seção 10 — facilidade, precisão, tempo de treino e tempo de inferência       |
 
 ---
 
@@ -90,11 +90,11 @@ Ordem de execução das [issues](../../issues), com dependências (as prioridade
 | 1º    | [#1 Dataset — objetos A e B](../../issues/1)                    | —              | ✅ concluída                               |
 | 2º    | [#2 Rotulação no Make Sense IA](../../issues/2)                 | #1             | ✅ concluída                               |
 | 3º    | [#3 Colab YOLOv5 — treino/val/teste](../../issues/3)            | #2             | ✅ executada (notebook acima)              |
-| 4º    | [#4 Simulações 30 vs 60 épocas](../../issues/4)                 | #3             | ⏳ próxima                                 |
+| 4º    | [#4 Simulações 30 vs 60 épocas](../../issues/4)                 | #3             | ✅ executada (seção 8)                     |
 | 5º    | [#5 Resultados — prints e conclusões](../../issues/5)           | #4             | ✅ seção 7 do notebook                     |
-| 6º    | [#6 YOLO tradicional](../../issues/6)                           | #1             | 🔸 baseline e comparação prontos; faltam os tempos medidos e a tabela |
-| 7º    | [#7 CNN treinada do zero](../../issues/7)                       | #1             | ⏳                                         |
-| 8º    | [#8 Comparação crítica das 3 abordagens](../../issues/8)        | #3–#7          | ⏳                                         |
+| 6º    | [#6 YOLO tradicional](../../issues/6)                           | #1             | ✅ baseline, contagens e tempos (seções 7 e 10) |
+| 7º    | [#7 CNN treinada do zero](../../issues/7)                       | #1             | ✅ executada (seção 9)                     |
+| 8º    | [#8 Comparação crítica das 3 abordagens](../../issues/8)        | #3–#7          | ✅ seção 10                                |
 | 9º    | [#9 README, notebook e vídeo final](../../issues/9)             | #1–#8          | 🔸 README e notebook prontos; falta o vídeo |
 | Opc.  | [#10 Ir Além — ESP32-CAM](../../issues/10)                      | #3 (`best.pt`) | ➖ não iniciada                            |
 | Opc.  | [#11 Ir Além — Transfer Learning](../../issues/11)              | #7             | ➖ não iniciada                            |
