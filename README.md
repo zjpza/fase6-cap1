@@ -110,7 +110,7 @@ Ordem de execução das [issues](issues), com dependências (as prioridades tamb
 - **Como as máscaras são geradas:** segmentação automática com um YOLO pré-treinado no COCO (`cow` = 19 e `truck` = 7), sem nenhum treino nosso; a imagem recortada mantém só o objeto, com fundo preto.
 - **Evidências no notebook:** figura original/máscara/recortada, curvas de treino, matrizes de confusão, tabela comparativa dos 4 treinos e a figura de arquitetura da solução.
 - **Resultados:** a MobileNetV2 pré-treinada acertou **8/8 no teste** nas duas versões da base, contra **7/8** da CNN do zero — com **2,3 M de parâmetros contra 11,2 M**. Recortar o fundo não mudou a acurácia nesta base, mas cortou o tempo de treino da CNN do zero pela metade (1,06 → 0,56 min). A segmentação automática achou máscara em **todas as 80 imagens** (cobertura média de 24,7%).
-- 🎥 **Vídeo demonstrativo:** pendente de gravação e publicação no YouTube como **não listado**. O roteiro de gravação está em [`docs/VIDEO_ROTEIRO.md`](https://youtu.be/qasyjWnbH2I).
+- 🎥 **Vídeo demonstrativo do Ir Além:** https://youtu.be/8su5BgxEEP4
 
 A **Opção 1** (ESP32-CAM/webcam com detecção em tempo real) ficou de fora nesta fase.
 
