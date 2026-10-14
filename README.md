@@ -95,7 +95,7 @@ Ordem de execução das [issues](issues), com dependências (as prioridades tamb
 | 6º    | [#6 YOLO tradicional](issues/6)                           | #1             | ✅ baseline, contagens e tempos (seções 7 e 10) |
 | 7º    | [#7 CNN treinada do zero](issues/7)                       | #1             | ✅ executada (seção 9)                     |
 | 8º    | [#8 Comparação crítica das 3 abordagens](issues/8)        | #3–#7          | ✅ seção 10                                |
-| 9º    | [#9 README, notebook e vídeo final](issues/9)             | #1–#8          | 🔸 documentação pronta; falta publicar o vídeo |
+| 9º    | [#9 README, notebook e vídeo final](issues/9)             | #1–#8          | ✅ concluída (vídeo publicado)             |
 | Opc.  | [#10 Ir Além — ESP32-CAM](issues/10)                      | #3 (`best.pt`) | ➖ não iniciada                            |
 | Opc.  | [#11 Ir Além — Transfer Learning](issues/11)              | #7             | ✅ executada no notebook opcional          |
 
@@ -133,4 +133,6 @@ O dataset não é versionado (`dataset/` está no `.gitignore`): as 80 imagens e
 
 ## 🎥 Vídeo demonstrativo
 
-O único item de implementação ainda pendente é gravar e publicar o vídeo de até 5 minutos. Para não registrar um link fictício, o README será atualizado com a URL do YouTube após o upload. Use o roteiro em [`docs/VIDEO_ROTEIRO.md`](https://youtu.be/qasyjWnbH2I), publique como **não listado** e substitua este bloco pelo link final.
+Demonstração das Entregas 1 e 2 (YouTube, não listado): https://youtu.be/qasyjWnbH2I
+
+O roteiro usado na gravação está em [`docs/VIDEO_ROTEIRO.md`](docs/VIDEO_ROTEIRO.md).
